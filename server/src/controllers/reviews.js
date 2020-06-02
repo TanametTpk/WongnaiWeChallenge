@@ -30,6 +30,11 @@ module.exports = (Models) => {
             if (keywordDoc){
     
                 let reviews = await Reviews.find({ review: new RegExp(keywordDoc.keyword) }).limit(5)
+                reviews = reviews.map((rev) => {
+                    rev.review = rev.review.replace(new RegExp(keywordDoc.keyword, 'g'), `<keyword>${keywordDoc.keyword}</keyword>`)
+                    return rev
+                })
+
                 return res.success(reviews)
     
             }

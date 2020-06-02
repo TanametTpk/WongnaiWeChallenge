@@ -146,6 +146,25 @@ describe('Review routes', () => {
     
         })
 
+        it('keyword should replace by keyword tag', (done) => {
+    
+            request
+                .get(encodeURI('/reviews?query=ตำร้อยเอ็ด'))
+                .set('Accept', 'application/json')
+                .expect('Content-Type', /json/)
+                .expect(200)
+                .then((res) => {
+
+                    expect(res.body[0].review.includes(`<keyword>ตำร้อยเอ็ด</keyword>`)).toEqual(true)
+                    done()
+    
+                })
+                .catch((error) => {
+                    done(error)
+                })
+    
+        })
+
         it('found more than 5 reviews', (done) => {
     
             request
