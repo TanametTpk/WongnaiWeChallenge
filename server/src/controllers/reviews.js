@@ -32,4 +32,18 @@ module.exports = {
 
     },
 
+    editReview: async (req, res) => {
+
+        let id = req.params.id
+
+        if ( (!req.body.review) && `${req.body.review}`.trim().length < 1 ) 
+            return res.preconditionFailed({ error: "Not Found Review in Request Body" })
+
+        let reviewDoc = await Reviews.findById({_id: id})
+        reviewDoc.review = `${req.body.review}`
+
+        res.success(review)
+
+    }
+
 }
