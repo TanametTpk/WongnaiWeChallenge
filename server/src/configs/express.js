@@ -14,7 +14,7 @@ module.exports = function(){
 	app.use(middleware.customResponses)
 
 	require( "./mongoose" )(app)
-	app.use(require( "../app" ))
+	app.use(require( "../routes" ))
 
 	return {
 		app:app,
