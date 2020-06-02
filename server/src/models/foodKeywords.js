@@ -3,7 +3,7 @@ var Schema = require("mongoose").Schema;
 
 var schema = Schema({
 
-    keyword: { type: String, trim: true },
+    keyword: { type: String, trim: true, index:true },
 
 })
 
