@@ -41,7 +41,7 @@ module.exports = (Models) => {
             if ( (!req.body.review) && `${req.body.review}`.trim().length < 1 ) 
                 return res.preconditionFailed({ error: "Not Found Review in Request Body" })
     
-            let reviewDoc = await Reviews.findById({_id: id})
+            let reviewDoc = await Reviews.findById(id)
             reviewDoc.review = `${req.body.review}`
     
             res.success(review)
