@@ -1,6 +1,11 @@
-const router = require( "express" ).Router()
-const reviews = require('./reviews')
 
-router.use("/reviews", reviews);
+module.exports = (Models) => {
 
-module.exports = router;
+    const router = require( "express" ).Router()
+    const reviews = require('./reviews')(Models)
+
+    router.use("/reviews", reviews);
+
+    return router
+
+}
