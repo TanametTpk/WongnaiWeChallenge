@@ -9,6 +9,10 @@ module.exports = (Models) => {
         getById: async (req, res) => {
     
             let id = req.params.id
+
+            // if not a number
+            if (isNaN(id)) return res.success(null)
+
             let review = await Reviews.findById(id)
     
             res.success(review)

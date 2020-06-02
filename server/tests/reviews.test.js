@@ -64,6 +64,26 @@ describe('Review routes', () => {
                 })
     
         })
+
+        it('Response null when review id is not a number', (done) => {
+    
+            request
+                .get('/reviews/notanumber')
+                .send({ review: "     \n     " })
+                .set('Accept', 'application/json')
+                .expect('Content-Type', /json/)
+                .expect(200)
+                .then((res) => {
+
+                    expect(res.body).toEqual(null)
+                    done()
+    
+                })
+                .catch((error) => {
+                    done(error)
+                })
+    
+        })
     
     })
 
