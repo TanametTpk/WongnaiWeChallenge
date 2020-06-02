@@ -88,6 +88,25 @@ describe('Review routes', () => {
     
         })
 
+        it('Response empty array when have no found', (done) => {
+    
+            request
+                .get(encodeURI('/reviews?query=ไม่หรอกคำนี้อะ'))
+                .set('Accept', 'application/json')
+                .expect('Content-Type', /json/)
+                .expect(200)
+                .then((res) => {
+
+                    expect(res.body.length).toEqual(0)
+                    done()
+    
+                })
+                .catch((error) => {
+                    done(error)
+                })
+    
+        })
+
         it('found a review', (done) => {
     
             request
@@ -126,6 +145,89 @@ describe('Review routes', () => {
     
         })
     
+    })
+
+    describe('Edit Review', () => {
+    
+        it('Response Error when review not exist in database', (done) => {
+    
+            request
+                .put('/reviews/500')
+                .send({ review: "edited" })
+                .set('Accept', 'application/json')
+                .expect('Content-Type', /json/)
+                .expect(412)
+                .then((res) => {
+
+                    expect(res.body.error).toEqual("Not Found Review")
+                    done()
+    
+                })
+                .catch((error) => {
+                    done(error)
+                })
+    
+        })
+
+        it('Response Error when review not exist in request body', (done) => {
+    
+            request
+                .put('/reviews/1')
+                .set('Accept', 'application/json')
+                .expect('Content-Type', /json/)
+                .expect(412)
+                .then((res) => {
+
+                    expect(res.body.error).toEqual("Not Found Review in Request Body")
+                    done()
+    
+                })
+                .catch((error) => {
+                    done(error)
+                })
+    
+        })
+
+        it('Response Error when review is empty', (done) => {
+    
+            request
+                .put('/reviews/1')
+                .send({ review: "     \n     " })
+                .set('Accept', 'application/json')
+                .expect('Content-Type', /json/)
+                .expect(412)
+                .then((res) => {
+
+                    expect(res.body.error).toEqual("Not Found Review in Request Body")
+                    done()
+    
+                })
+                .catch((error) => {
+                    done(error)
+                })
+    
+        })
+
+        it('can edit reviews', (done) => {
+    
+            request
+                .put('/reviews/1')
+                .send({ review: "edited" })
+                .set('Accept', 'application/json')
+                .expect('Content-Type', /json/)
+                .expect(200)
+                .then((res) => {
+
+                    expect(res.body.review).toEqual("edited")
+                    done()
+    
+                })
+                .catch((error) => {
+                    done(error)
+                })
+    
+        })
+
     })
 
 })

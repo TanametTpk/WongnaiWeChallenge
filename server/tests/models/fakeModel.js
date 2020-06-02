@@ -6,7 +6,11 @@ module.exports = {
 
         findById: async (id) => {
 
-            return fakeReview.find(rev => rev._id == id)
+            let reviews = fakeReview.find(rev => rev._id == id)
+            if (!reviews) return null
+            let object = { ...reviews }
+            object["save"] = async() => reviews
+            return object
 
         },
 
