@@ -1,11 +1,14 @@
-const router = require( "express" ).Router()
-const Reviews = require('../controllers/reviews')
 
-router
-    .get("/", Reviews.getByKeyword)
+module.exports = (Models) => {
 
-router
-    .get("/:id", Reviews.getById)
-    .put(Reviews.editReview)
+    const router = require( "express" ).Router()
+    const Reviews = require('../controllers/reviews')(Models)
 
-module.exports = router;
+    router.get("/", Reviews.getByKeyword)
+
+    router.get("/:id", Reviews.getById)
+    router.put("/:id", Reviews.editReview)
+
+    return router
+
+}

@@ -3,7 +3,7 @@ const http = require("http")
 const middleware = require("./middlewares")
 const cors = require("cors")
 
-module.exports = function(){
+module.exports = function(Models){
 
 	var app = express()
 	const server = http.createServer(app)
@@ -13,8 +13,7 @@ module.exports = function(){
 	app.use(cors())
 	app.use(middleware.customResponses)
 
-	require( "./mongoose" )(app)
-	app.use(require( "../routes" ))
+	app.use(require( "../routes" )(Models))
 
 	return {
 		app:app,

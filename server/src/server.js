@@ -1,6 +1,7 @@
 const env = require("./configs/env")
 const express = require('./configs/express')
-const items = express()
+let Models = require( "./configs/mongoose" )()
+const items = express(Models)
 const server = items.server
 
 server.listen(env.network.PORT , function() {

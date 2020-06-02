@@ -19,17 +19,17 @@ var connectWithRetry = function(uri) {
   })
 };
 
-module.exports = function(app) {
+module.exports = function() {
 
   // assign uri
   db_auth = (config.username + config.password).length === 0 ? "" : config.username + ":" + config.password + "@";
   let uri =  config.rewrite ? config.rewrite : (config.protocol + "://" + db_auth + config.hostname + "/" + config.database_name);
 
-  require('../models');
+  let models = require('../models');
 
   connectWithRetry(uri)
-	mongoose.Promise = global.Promise;
-
-	if ( app ) app.set( "mongoose", mongoose );
+  mongoose.Promise = global.Promise;
+  
+  return models
 
 }
