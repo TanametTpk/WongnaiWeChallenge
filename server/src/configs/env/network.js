@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 5555;
+const PORT = process.env.PORT || 8080;
 
 module.exports = {
     PORT
