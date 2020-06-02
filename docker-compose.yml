@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+
+  webapp:
+    build: ./client
+    ports:
+      - "5555:80"
+    environment:
+      SERVER_ENDPOINT: http://localhost:8080
+
+  server:
+    build: ./server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - data_loader
+      - database
+    environment: 
+      DB_SERVICE: database
+
+  database:
+    image: mongo
+
+  data_loader:
+    build: ./load_data
+    depends_on:
+      - database
+    environment: 
+      DB_SERVICE: database
+    volumes:
+       - ./datasets/:/app/datasets/

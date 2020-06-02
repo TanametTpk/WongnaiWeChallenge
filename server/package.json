@@ -2,9 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +15,9 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.9.16"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "supertest": "^4.0.2"
   }
 }
