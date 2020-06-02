@@ -2,8 +2,8 @@ const fs = require('fs')
 const csv = require('neat-csv')
 const models = require('./mongoose')()
 
-const reviews = fs.readFileSync('../datasets/test_file.csv', 'utf8')
-const food_dict = fs.readFileSync('../datasets/food_dictionary.txt', 'utf8')
+const reviews = fs.readFileSync('./datasets/test_file.csv', 'utf8')
+const food_dict = fs.readFileSync('./datasets/food_dictionary.txt', 'utf8')
 
 const addReviews = async (reviews) => {
     const results = await csv(reviews, { separator: ";" })
