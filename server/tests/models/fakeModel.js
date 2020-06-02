@@ -10,11 +10,20 @@ module.exports = {
 
         },
 
-        find: async (payload) => {
+        find: (payload) => {
 
             let { review } = payload
 
-            return fakeReview.filter(rev => rev.review.match(review))
+            let res = {
+                reviews: fakeReview.filter(rev => rev.review.match(review)),
+                limit: (number) => {
+                    return res.reviews.filter((rev,index) => index < number)
+                }
+            }
+
+            return res
+
+            // return fakeReview.filter(rev => rev.review.match(review))
 
         }
 

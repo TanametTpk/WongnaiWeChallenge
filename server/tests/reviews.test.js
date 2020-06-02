@@ -13,7 +13,9 @@ describe('Server Working', () => {
             .get('/')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
-            .then(res => done())
+            .end(res => {
+                done()
+            })
 
     })
 
@@ -89,7 +91,7 @@ describe('Review routes', () => {
         it('found a review', (done) => {
     
             request
-                .get('/reviews?query=ตำร้อยเอ็ด')
+                .get(encodeURI('/reviews?query=ตำร้อยเอ็ด'))
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(200)
@@ -108,13 +110,13 @@ describe('Review routes', () => {
         it('found more than 5 reviews', (done) => {
     
             request
-                .get('/reviews?query=โรตีทุเรียน')
+                .get(encodeURI('/reviews?query=โรตีทุเรียน'))
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(200)
                 .then((res) => {
 
-                    expect(res.body._id).toEqual(5)
+                    expect(res.body.length).toEqual(5)
                     done()
     
                 })
