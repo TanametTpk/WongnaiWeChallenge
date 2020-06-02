@@ -25,7 +25,7 @@ module.exports = function(app) {
   db_auth = (config.username + config.password).length === 0 ? "" : config.username + ":" + config.password + "@";
   let uri =  config.rewrite ? config.rewrite : (config.protocol + "://" + db_auth + config.hostname + "/" + config.database_name);
 
-  require('../app/models');
+  require('../models');
 
   connectWithRetry(uri)
 	mongoose.Promise = global.Promise;

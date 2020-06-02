@@ -1,5 +1,5 @@
 const env = require("./configs/env")
-const express = require('./config/express')
+const express = require('./configs/express')
 const items = express()
 const server = items.server
 

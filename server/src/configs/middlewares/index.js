@@ -1,5 +1,5 @@
 
 module.exports = {
-    customResponse: require('./customResponse'),
+    customResponses: require('./customResponses'),
     
 }
