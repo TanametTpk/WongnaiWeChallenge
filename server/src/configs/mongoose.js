@@ -2,7 +2,7 @@ const mongoose = require( "mongoose" );
 const config = require("./env/database");
 
 var connectWithRetry = function(uri) {
-  return mongoose.connect(uri ,{ useCreateIndex: true, useNewUrlParser: true } , (err) => {
+  return mongoose.connect(uri ,{ useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true } , (err) => {
 
     if (err) {
 
