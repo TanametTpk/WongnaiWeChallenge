@@ -9,7 +9,7 @@ module.exports = (Models) => {
         getById: async (req, res) => {
     
             let id = req.params.id
-            let review = await Reviews.findById({_id: id})
+            let review = await Reviews.findById(id)
     
             res.success(review)
     
