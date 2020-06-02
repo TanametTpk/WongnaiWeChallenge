@@ -32,7 +32,7 @@ const SingleReview:React.FC<RouteComponentProps<ReviewProps>> = ({ match }) => {
 
     }, [match.params.id])
 
-    const onChangeReview = (event: ChangeEvent<HTMLInputElement>) => {
+    const onChangeReview = (event: ChangeEvent<HTMLTextAreaElement>) => {
 
         setEditedReview(event.target.value)
         
@@ -58,7 +58,7 @@ const SingleReview:React.FC<RouteComponentProps<ReviewProps>> = ({ match }) => {
                             {
                                 isEditing ?
                                     <div>
-                                        <input value={editedReview} onChange={onChangeReview} placeholder="write review here" />
+                                        <textarea value={editedReview} onChange={onChangeReview} placeholder="write review here" />
                                         <Button onClick={() => setIsEditing(false)}>Cancel</Button>
                                         <Button type="primary" onClick={editReview}>Edit Review</Button>
                                     </div>
